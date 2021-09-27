@@ -2,7 +2,6 @@
 // to enable stricter warnings.
 #![allow(unused)]
 
-use core::slice::heapsort;
 
 pub struct Player {
     pub health: u32,
