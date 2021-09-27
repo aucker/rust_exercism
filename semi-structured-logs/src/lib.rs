@@ -10,7 +10,7 @@ pub enum LogLevel {
     Error,
 }
 /// primary function for emitting logs
-pub fn log(level: LogLevel, message: &str) -> String {
+/*pub fn log(level: LogLevel, message: &str) -> String {
     let level = format!("{:?}", level);
     format!("[{}]: {}", level.to_uppercase(), message)
     //unimplemented!()
@@ -26,4 +26,18 @@ pub fn warn(message: &str) -> String {
 pub fn error(message: &str) -> String {
     log(LogLevel::Error, message)
     //unimplemented!()
+}*/
+
+pub fn log(level: LogLevel, message: &str) -> String {
+    let level = format!("{:?}", level);
+    format!("[{}]: {}", level.to_uppercase(), message)
+}
+pub fn info(message: &str) -> String {
+    log(LogLevel::Info, message)
+}
+pub fn warn(message: &str) -> String {
+    log(LogLevel::Warning, message)
+}
+pub fn error(message: &str) -> String {
+    log(LogLevel::Error, message)
 }
