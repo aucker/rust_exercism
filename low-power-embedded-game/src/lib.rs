@@ -21,5 +21,5 @@ impl Position {
     pub fn manhattan(&self) -> i16 {
         //unimplemented!("implement `fn manhattan`")
         (self.0).abs() + (self.1).abs()
-    }
+    }   //manhattan distance: https://en.wikipedia.org/wiki/Taxicab_geometry
 }
