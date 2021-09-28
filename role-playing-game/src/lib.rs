@@ -3,7 +3,7 @@
 #![allow(unused)]
 
 
-use std::thread::require_unstable_const_init_thread_local;
+//use std::thread::require_unstable_const_init_thread_local;
 
 pub struct Player {
     pub health: u32,
@@ -11,7 +11,7 @@ pub struct Player {
     pub level: u32,
 }
 
-impl Player {
+/*impl Player {
     pub fn revive(&self) -> Option<Player> {
         if self.health > 0 {
             return None;
@@ -53,5 +53,41 @@ impl Player {
         self.mana.replace(cur_mana);
         return mana_cost * 2
         //unimplemented!("Cast a spell of cost {}", mana_cost)
+    }
+}*/
+
+impl Player {
+    pub fn revive(&self) -> Option<Player> {
+        if self.health > 0 {
+            return None
+        }
+        let mut mana:Option<u32> = None;
+        if self.level >= 10 {
+            mana = Some(100)
+        }
+        return Some(Player {
+            health: 100,
+            mana,
+            level: self.level,
+        })
+    }
+    pub fn cast_spell(&mut self, mana_cost: u32) -> u32 {
+        if self.mana.is_none() {
+            if self.health < mana_cost {
+                self.health = 0
+            } else {
+                self.health = self.health - mana_cost
+            }
+            return 0
+        }
+
+        let mut cur_mana = self.mana.unwrap();
+        if cur_mana < mana_cost {
+            return 0
+        }
+        cur_mana = self.mana - mana_cost;
+        self.mana.replace(cur_mana);
+        return mana_cost*2
+
     }
 }
